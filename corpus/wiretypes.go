@@ -15,6 +15,7 @@ type TWordItemSlice []TWordItem
 
 type ICorpus interface {
 	Build(fname string) (err error)
+	BuildFromFolder(fname string) (err error)
 	GetVocabCnt() int //排重后的词库大小
 	GetDocCnt() int   //doc个数, 按docid排重
 	GetWordsCnt() int //排重前的词数

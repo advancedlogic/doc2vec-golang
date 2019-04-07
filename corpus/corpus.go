@@ -379,18 +379,21 @@ func (p *TCorpusImpl) loadDocument(fname string) (err error) {
 	return err
 }
 
+func (p *TCorpusImpl) BuildFromFolder(fname string) (err error) {
+	err = p.buildVocabulary(fname)
+	if err != nil {
+		return err
+	}
+
+	return p.loadDocuments(fname)
+}
+
 func (p *TCorpusImpl) Build(fname, ftype string) (err error) {
 	err = p.buildVocabulary(fname)
 	if err != nil {
 		return err
 	}
-	switch ftype {
-	case "file":
-		return p.loadDocument(fname)
-	case "folder":
-		return p.loadDocuments(fname)
-	}
-	return nil
+	return p.loadDocument(fname)
 }
 
 func NewCorpus() ICorpus {
