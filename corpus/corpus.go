@@ -388,7 +388,7 @@ func (p *TCorpusImpl) BuildFromFolder(fname string) (err error) {
 	return p.loadDocuments(fname)
 }
 
-func (p *TCorpusImpl) Build(fname, ftype string) (err error) {
+func (p *TCorpusImpl) Build(fname string) (err error) {
 	err = p.buildVocabulary(fname)
 	if err != nil {
 		return err
