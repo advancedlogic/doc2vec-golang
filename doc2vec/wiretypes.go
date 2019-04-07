@@ -3,7 +3,7 @@ package doc2vec
 import (
 	"github.com/lokicui/doc2vec-golang/corpus"
 	"github.com/lokicui/doc2vec-golang/neuralnet"
-    "sync"
+	"sync"
 )
 
 //go:generate msgp
@@ -17,6 +17,7 @@ type TSortItemSlice []*SortItem
 
 type IDoc2Vec interface {
 	Train(fname string)
+	TrainFromFolder(fname string)
 	GetCorpus() corpus.ICorpus
 	GetNeuralNet() neuralnet.INeuralNet
 	SaveModel(fname string) (err error)
@@ -29,7 +30,7 @@ type IDoc2Vec interface {
 	Doc2Words(docidx int)
 	GetLikelihood4Doc(context string) (likelihood float64)
 	GetLeaveOneOutKwds(content string, iters int)
-    DocSimCal(content1 string, content2 string) (dis float64)
+	DocSimCal(content1 string, content2 string) (dis float64)
 }
 
 type TDoc2VecImpl struct {
@@ -45,5 +46,5 @@ type TDoc2VecImpl struct {
 	TrainedWords int
 	Corpus       corpus.ICorpus
 	NN           neuralnet.INeuralNet
-    Pool         *sync.Pool
+	Pool         *sync.Pool
 }
